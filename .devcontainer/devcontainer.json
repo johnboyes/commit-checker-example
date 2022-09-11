@@ -32,6 +32,11 @@
 			]
 		}
 	},
+	"containerEnv": {
+		// Temporary workaround for https://github.com/getgauge/gauge-python/issues/256
+		// See: https://github.com/protocolbuffers/protobuf/issues/10051#issuecomment-1138671075
+		"PROTOCOL_BUFFERS_PYTHON_IMPLEMENTATION": "python"
+	},
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	// "forwardPorts": [],
 
