@@ -7,6 +7,9 @@ jobs:
 
   yamllint:
     name: runner / yamllint
+    if: |
+      (github.actor!= 'dependabot[bot]') &&
+      (contains(github.head_ref, 'dependabot/github_actions/') == false)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2.3.4
