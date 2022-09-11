@@ -7,13 +7,13 @@ on:  # yamllint disable-line rule:truthy
 
 jobs:
   check-commit-message-style-push:
-    if: |
-      (github.actor!= 'dependabot[bot]') &&
-      (contains(github.head_ref, 'dependabot/github_actions/') == false)
     name: Check commit message style on push
     runs-on: ubuntu-latest
     steps:
       - name: Check
+        if: |
+          (github.actor!= 'dependabot[bot]') &&
+          (contains(github.head_ref, 'dependabot/github_actions/') == false)
         uses: mristin/opinionated-commit-message@v2.2.0
         with:
           allow-one-liners: 'true'
