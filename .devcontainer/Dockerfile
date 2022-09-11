@@ -2,11 +2,16 @@
 ARG VARIANT=3-bullseye
 FROM python:${VARIANT}
 
+ARG HADOLINT_VERSION=v2.10.0
+
 RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
     # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
     && apt-get purge -y imagemagick imagemagick-6-common \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    # install Hadolint to lint this and any other Dockerfiles
+    && wget -qO /usr/local/bin/hadolint https://github.com/hadolint/hadolint/releases/download/$HADOLINT_VERSION/hadolint-Linux-x86_64 \
+    && chmod +x /usr/local/bin/hadolint
 
 # [Optional] If your pip requirements rarely change, uncomment this section to add them to the image.
 # COPY requirements.txt /tmp/pip-tmp/
